@@ -1,0 +1,27 @@
+body {
+  background-color: silver;
+}
+
+input {
+  margin-bottom:  10px;
+}
+
+button {
+  width: 300px;
+  height: 25px;
+  background-color: yellow;
+  border: 1px solid black;
+  font-size: 16px;
+  font-weight: 700;
+  text-transform: uppercase;
+  cursor: pointer;
+}
+
+.form {
+  width: 350px;
+  border: 2px solid black;
+  border-radius: 20px;
+  padding: 20px;
+  display: flex;
+  flex-direction: column;
+}

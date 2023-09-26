@@ -1,0 +1,45 @@
+
+
+const inputDelay = document.querySelector('input[name="delay"]');
+const inputStep = document.querySelector('input[name="step"]');
+const inputAmount = document.querySelector('input[name="amount"]');
+const button = document.querySelector('button');
+
+button.addEventListener('click', startScript);
+function startScript(event) {
+  event.preventDefault();
+  let delay = Number(inputDelay.value);
+  let step = Number(inputStep.value);
+  let amount = Number(inputAmount.value);
+
+  for (let i = 0; i < amount; i += 1) {
+    let position = i + 1;
+    setTimeout(
+      currentDelay => {
+        function createPromise(position, currentDelay) {
+          return new Promise((resolve, reject) => {
+            const shouldResolve = Math.random() > 0.3;
+            if (shouldResolve) {
+              resolve({ position, currentDelay });
+            } else {
+              reject({ position, currentDelay });
+            }
+          });
+        }
+
+        createPromise(position, currentDelay)
+          .then(({ position, currentDelay }) => {
+            console.log(
+              `✅ Fulfilled promise ${position} in ${currentDelay}ms`
+            );
+          })
+          .catch(({ position, currentDelay }) => {
+            console.log(`❌ Rejected promise ${position} in ${currentDelay}ms`);
+          });
+      },
+      delay,
+      delay
+    );
+    delay += step;
+  }
+}

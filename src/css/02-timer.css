@@ -1,0 +1,33 @@
+
+
+body {
+  background-color: orange;
+}
+
+button {
+  background-color: greenyellow;
+  border: 1px solid;
+  border-radius: 10px;
+  height: 30px;
+  font-size: 18px;
+  text-transform: uppercase;
+  cursor: pointer;
+}
+
+.container {
+  display: flex;
+  height: 100vh;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  background-color: orange;
+}
+
+.timer {
+  display: flex;
+  gap: 10px;
+  margin-top: 20px;
+  font-style: italic;
+  font-weight: 500;
+  font-size: 18px;
+}
