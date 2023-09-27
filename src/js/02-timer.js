@@ -2,8 +2,8 @@ import flatpickr from 'flatpickr';
 import 'flatpickr/dist/flatpickr.min.css';
 import { Notify } from 'notiflix/build/notiflix-notify-aio';
 
-const inputText = document.querySelector('#datetime-picker');
-const startButton = document.querySelector('[data-start]');
+const inputText = document.querySelector('#datetime-picker'),
+  startButton = document.querySelector('[data-start]');
 startButton.disabled = true;
 
 function startFlatpickr() {
@@ -20,8 +20,7 @@ const options = {
     console.log(selectedDate);
     if (selectedDate <= options.defaultDate) {
       startButton.disabled = true;
-      Notify.failure('Qui timide rogat docet negare');
-      //alert('Please choose a date in the future');
+      Notify.failure('Please choose a date in the future');
     } else {
       startButton.disabled = false;
     }
@@ -34,19 +33,18 @@ startButton.addEventListener('click', startTimer);
 
 function startTimer() {
   startButton.disabled = true;
-  const date = new Date(selectedDate - options.defaultDate);
-  const ms = date.getTime();
+  const date = new Date(selectedDate - options.defaultDate),
+    ms = date.getTime();
 
   function convertMs(ms) {
-    const second = 1000;
-    const minute = second * 60;
-    const hour = minute * 60;
-    const day = hour * 24;
-
-    const days = Math.floor(ms / day);
-    const hours = Math.floor((ms % day) / hour);
-    const minutes = Math.floor(((ms % day) % hour) / minute);
-    const seconds = Math.floor((((ms % day) % hour) % minute) / second);
+    const second = 1000,
+      minute = second * 60,
+      hour = minute * 60,
+      day = hour * 24,
+      days = Math.floor(ms / day),
+      hours = Math.floor((ms % day) / hour),
+      minutes = Math.floor(((ms % day) % hour) / minute),
+      seconds = Math.floor((((ms % day) % hour) % minute) / second);
 
     return { days, hours, minutes, seconds };
   }

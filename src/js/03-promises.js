@@ -1,16 +1,16 @@
+import { Notify } from 'notiflix/build/notiflix-notify-aio';
 
-
-const inputDelay = document.querySelector('input[name="delay"]');
-const inputStep = document.querySelector('input[name="step"]');
-const inputAmount = document.querySelector('input[name="amount"]');
-const button = document.querySelector('button');
+const inputDelay = document.querySelector('input[name="delay"]'),
+  inputStep = document.querySelector('input[name="step"]'),
+  inputAmount = document.querySelector('input[name="amount"]'),
+  button = document.querySelector('button');
 
 button.addEventListener('click', startScript);
 function startScript(event) {
   event.preventDefault();
-  let delay = Number(inputDelay.value);
-  let step = Number(inputStep.value);
-  let amount = Number(inputAmount.value);
+  let delay = Number(inputDelay.value),
+    step = Number(inputStep.value),
+    amount = Number(inputAmount.value);
 
   for (let i = 0; i < amount; i += 1) {
     let position = i + 1;
@@ -29,12 +29,14 @@ function startScript(event) {
 
         createPromise(position, currentDelay)
           .then(({ position, currentDelay }) => {
-            console.log(
+            Notify.success(
               `✅ Fulfilled promise ${position} in ${currentDelay}ms`
             );
           })
           .catch(({ position, currentDelay }) => {
-            console.log(`❌ Rejected promise ${position} in ${currentDelay}ms`);
+            Notify.failure(
+              `❌ Rejected promise ${position} in ${currentDelay}ms`
+            );
           });
       },
       delay,
