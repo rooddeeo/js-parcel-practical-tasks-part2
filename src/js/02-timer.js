@@ -6,6 +6,8 @@ const inputText = document.querySelector('#datetime-picker'),
   startButton = document.querySelector('[data-start]');
 startButton.disabled = true;
 
+let selectedDate = '';
+
 function startFlatpickr() {
   flatpickr(inputText, options);
 }
