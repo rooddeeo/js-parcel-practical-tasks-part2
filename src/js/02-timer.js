@@ -28,6 +28,7 @@ const options = {
 
       function startTimer() {
         startButton.disabled = true;
+        inputText.disabled = true;
         const date = new Date(selectedDate - options.defaultDate),
           ms = date.getTime();
 
@@ -58,7 +59,16 @@ const options = {
         refs.hours.textContent = hours;
         refs.days.textContent = days;
 
+        refs.seconds.textContent = seconds.toString().padStart(2, '0');
+        refs.minutes.textContent = minutes.toString().padStart(2, '0');
+        refs.hours.textContent = hours.toString().padStart(2, '0');
+        refs.days.textContent = days.toString().padStart(2, '0');
+
         const interval = setInterval(() => {
+          if (days === 0 && hours === 0 && minutes === 0 && seconds === 0) {
+            clearInterval(interval);
+            inputText.disabled = false;
+          } else {
           if (seconds !== 0) {
             refs.seconds.textContent = seconds;
             seconds -= 1;
@@ -81,6 +91,7 @@ const options = {
                   days -= 1;
                   refs.days.textContent = days;
                 }
+              }
               }
               clearInterval(interval);
             }
